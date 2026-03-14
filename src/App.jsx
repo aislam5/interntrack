@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {supabase} from './supabaseClient'
 import Auth from './pages/Auth'
+import Applications from './pages/Applications'
 
 
 
@@ -27,11 +28,11 @@ function App() {
     <div>
       {session ? (
       <div>
-        <h1>You are logged in</h1>
+        <Applications supabase={supabase} session={session}/>
         <button onClick={handleLogout}>Log Out</button>
       </div>
-    ) : <Auth supabase={supabase} />}
-  </div>
+      ) : <Auth supabase={supabase} />}
+    </div>
   )
 }
 
