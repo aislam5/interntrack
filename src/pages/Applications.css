@@ -1,0 +1,110 @@
+.applications-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #ffffff;
+}
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.application-card {
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.company-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.role-name {
+  font-size: 14px;
+  color: #8b8fa8;
+  margin-bottom: 4px;
+}
+
+.applied-date {
+  font-size: 12px;
+  color: #8b8fa8;
+}
+
+.application-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-select {
+  width: auto;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status-select option {
+  color: #ffffff;
+  background-color: #1a1d27;
+}
+
+/* Status colors */
+.status-applied { color: #6366f1; border-color: #6366f1; }
+.status-interview { color: #f59e0b; border-color: #f59e0b; }
+.status-offer { color: #10b981; border-color: #10b981; }
+.status-rejected { color: #ef4444; border-color: #ef4444; }
+
+.delete-btn {
+  background-color: #ef444420;
+  color: #ef4444;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.delete-btn:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+.add-application-form {
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.form-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.add-btn {
+  background-color: #6366f1;
+  color: white;
+  padding: 10px 20px;
+  grid-column: span 2;
+  width: 100%;
+}

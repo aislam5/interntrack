@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './Applications.css'
 
 export default function Applications({ supabase, session }) {
 
@@ -76,28 +77,45 @@ export default function Applications({ supabase, session }) {
     fetchApplications()
   }, [])
 
-  return (
-    <div>
-      <h1>My Applications</h1>
+return (
+  <div className="applications-container">
+    <h1 className="page-title">My Applications</h1>
+
+    {/* Applications List */}
+    <div className="applications-list">
       {applications.map((application) => (
-        <div key={application.id}>
-            <p>{application.company}</p>
-            <p>{application.role}</p>
-            <select 
+        <div key={application.id} className="application-card">
+          <div className="application-info">
+            <h3 className="company-name">{application.company}</h3>
+            <p className="role-name">{application.role}</p>
+            <p className="applied-date">{application.applied_date}</p>
+          </div>
+          <div className="application-actions">
+            <select
               value={application.status}
               onChange={(e) => handleStatusChange(application.id, e.target.value)}
+              className={`status-select status-${application.status.toLowerCase()}`}
             >
               <option value="Applied">Applied</option>
               <option value="Interview">Interview</option>
               <option value="Offer">Offer</option>
               <option value="Rejected">Rejected</option>
             </select>
-            <p>{application.applied_date}</p>
-            <button onClick={() => handleDelete(application.id)}>Delete</button>
+            <button 
+              onClick={() => handleDelete(application.id)}
+              className="delete-btn"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       ))}
+    </div>
 
-      <div>
+    {/* Add Application Form */}
+    <div className="add-application-form">
+      <h2 className="form-title">Add Application</h2>
+      <div className="form-grid">
         <input
           value={company}
           onChange={(e) => setCompany(e.target.value)}
@@ -106,30 +124,29 @@ export default function Applications({ supabase, session }) {
         <input
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          placeholder='Role Applied for'
+          placeholder="Role applied for"
         />
-
         <input
+          type="date"
           value={appliedDate}
           onChange={(e) => setAppliedDate(e.target.value)}
-          placeholder='Date Applied'
         />
-
         <input
           value={link}
           onChange={(e) => setLink(e.target.value)}
-          placeholder='application link'
+          placeholder="Application link"
         />
-        
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
           <option value="Applied">Applied</option>
           <option value="Interview">Interview</option>
           <option value="Offer">Offer</option>
           <option value="Rejected">Rejected</option>
         </select>
-
-        <button onClick={handleAddApplication}>Show Application</button>
+        <button onClick={handleAddApplication} className="add-btn">
+          Add Application
+        </button>
       </div>
     </div>
+  </div>
   )
 }
