@@ -34,6 +34,19 @@ export default function Applications({ supabase, session }) {
     }
   }
 
+  async function handleDelete(id){
+    const {data, error} = await supabase
+    .from('applications')
+    .delete()
+    .eq('id', id)
+    if (error){
+      console.log('Error deleting Application from Database', error.message)
+    }else{
+      console.log('Application Deleted Successfully')
+      fetchApplications()
+    }
+  }
+
   async function fetchApplications(){
       const { data, error } = await supabase
       .from('applications')
@@ -43,6 +56,19 @@ export default function Applications({ supabase, session }) {
       } else {
         setApplications(data)
       }
+  }
+
+  async function handleStatusChange(id, newStatus){
+    const {error } = await supabase
+    .from('applications')
+    .update({ status: newStatus })
+    .eq('id', id)
+    if (error){
+      console.error('Error updating application status:', error)
+    }else{
+      console.log('Application status updated successfully')
+      fetchApplications()
+    }
   }
     
   useEffect(() => {
@@ -57,8 +83,17 @@ export default function Applications({ supabase, session }) {
         <div key={application.id}>
             <p>{application.company}</p>
             <p>{application.role}</p>
-            <p>{application.status}</p>
+            <select 
+              value={application.status}
+              onChange={(e) => handleStatusChange(application.id, e.target.value)}
+            >
+              <option value="Applied">Applied</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+            </select>
             <p>{application.applied_date}</p>
+            <button onClick={() => handleDelete(application.id)}>Delete</button>
         </div>
       ))}
 
