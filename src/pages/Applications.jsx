@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import './Applications.css'
 
-export default function Applications({ supabase, session }) {
+export default function Applications({ supabase, session, applications, fetchApplications }) {
 
-  const [applications, setApplications] = useState([])
   const [company, setCompany] = useState('')
   const [role, setRole] = useState('')
   const [status, setStatus] = useState('Applied')
@@ -48,17 +47,6 @@ export default function Applications({ supabase, session }) {
     }
   }
 
-  async function fetchApplications(){
-      const { data, error } = await supabase
-      .from('applications')
-      .select('*')
-      if (error) {
-        console.error('Error fetching applications:', error)
-      } else {
-        setApplications(data)
-      }
-  }
-
   async function handleStatusChange(id, newStatus){
     const {error } = await supabase
     .from('applications')
@@ -71,11 +59,7 @@ export default function Applications({ supabase, session }) {
       fetchApplications()
     }
   }
-    
-  useEffect(() => {
-    // fetch applications from supabase here
-    fetchApplications()
-  }, [])
+
 
 return (
   <div className="applications-container">

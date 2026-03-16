@@ -1,0 +1,51 @@
+.dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  padding: 24px;
+  border-top: 3px solid #6366f1;
+}
+
+.stat-card.interview { border-top-color: #f59e0b; }
+.stat-card.offer { border-top-color: #10b981; }
+.stat-card.rejected { border-top-color: #ef4444; }
+
+.stat-label {
+  font-size: 13px;
+  color: #8b8fa8;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.chart-container {
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #ffffff;
+}

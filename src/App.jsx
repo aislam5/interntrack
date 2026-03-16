@@ -9,19 +9,36 @@ import Navbar from './components/Navbar'
 
 function App() {
   const [session, setSession] = useState(null)
+  const[applications, setApplications] = useState([])
 
   async function handleLogout() {
     await supabase.auth.signOut()
   }
 
+  async function fetchApplications() {
+  const { data, error } = await supabase
+    .from('applications')
+    .select('*')
+  if (error) {
+    console.error(error)
+  } else {
+    setApplications(data)
+  }
+}
+
   useEffect(() => {
     supabase.auth.getSession().then(({data: {session}}) => {
       setSession(session)
-
+      if (session) {
+        fetchApplications()
+      }
     })
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      if (session) {
+        fetchApplications()
+      }
     })
   }, [])
 
@@ -32,10 +49,10 @@ function App() {
       <BrowserRouter>
         <Navbar handleLogout={handleLogout} />
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard applications={applications} />} />
           <Route
             path="/applications"
-            element={<Applications supabase={supabase} session={session} />}
+            element={<Applications supabase={supabase} session={session} applications={applications} fetchApplications={fetchApplications} />}
           />
           <Route path="/" element={<Dashboard />} />
         </Routes>
