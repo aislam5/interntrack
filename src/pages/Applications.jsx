@@ -60,12 +60,15 @@ export default function Applications({ supabase, session, applications, fetchApp
     }
   }
 
-
 return (
+
   <div className="applications-container">
     <h1 className="page-title">My Applications</h1>
 
-    {/* Applications List */}
+    {applications.length === 0 ? (
+      <p className="no-applications">You haven't added any applications yet. Start by adding one below!</p>
+    ) : 
+    (
     <div className="applications-list">
       {applications.map((application) => (
         <div key={application.id} className="application-card">
@@ -96,6 +99,7 @@ return (
         </div>
       ))}
     </div>
+    )}
 
     {/* Add Application Form */}
     <div className="add-application-form">

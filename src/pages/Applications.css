@@ -109,3 +109,13 @@
   grid-column: span 2;
   width: 100%;
 }
+
+.no-applications {
+  color: #8b8fa8;
+  text-align: center;
+  padding: 48px;
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
