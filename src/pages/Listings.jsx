@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './Listings.css'
 
 export default function Listings({supabase, session}) {
+  const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [listings, setListings] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -22,6 +23,7 @@ export default function Listings({supabase, session}) {
         
         console.log('Active listings:', activeListings.length)
         setListings(activeListings)
+        setLoading(false)
     }
 
     fetchListings()
@@ -49,6 +51,15 @@ export default function Listings({supabase, session}) {
     console.log('Application saved!')
   }
 }
+
+  if (loading) {
+    return(
+    <div className="listings-container">
+      <h1 className="page-title">Internship Listings</h1>
+      <p style={{color:'#8b8fa8'}}>Loading internship listings...</p>
+    </div>
+    )
+  }
   return (
   <div className="listings-container">
     <input
