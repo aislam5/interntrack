@@ -1,0 +1,93 @@
+.listings-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.listings-subtitle {
+  color: #8b8fa8;
+  font-size: 14px;
+  margin-top: -24px;
+  margin-bottom: 32px;
+}
+
+.listings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.listing-card {
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listing-company {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.listing-role {
+  font-size: 14px;
+  color: #8b8fa8;
+  margin-bottom: 4px;
+}
+
+.listing-location {
+  font-size: 12px;
+  color: #8b8fa8;
+}
+
+.apply-btn {
+  background-color: #6366f1;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.apply-btn:hover {
+  background-color: #4f46e5;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.pagination-btn {
+  background-color: #1a1d27;
+  border: 1px solid #2a2d3a;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.pagination-btn:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  color: #8b8fa8;
+  font-size: 14px;
+}

@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import './Auth.css'
 
 export default function Auth({supabase}) {
     const [email, setEmail] = useState('')
@@ -22,23 +23,39 @@ export default function Auth({supabase}) {
         }
     }
 
-    return(
-        <div>
-            <h1>InternTrack</h1>
-            <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder = "Email"
-            />
+    return (
+  <div className="auth-container">
+    <div className="auth-card">
+      <div className="auth-header">
+        <h1 className="auth-logo">InternTrack</h1>
+        <p className="auth-subtitle">Track your career path</p>
+      </div>
 
-            <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-            />
+      <div className="auth-form">
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email address"
+          type="email"
+          className="auth-input"
+        />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          type="password"
+          className="auth-input"
+        />
 
-            <button onClick={handleSignUp}>Sign Up</button>
-            <button onClick={handleLogin}>Login</button>
-        </div>
-    )
+        <button onClick={handleLogin} className="auth-btn-primary">
+          Login
+        </button>
+        <button onClick={handleSignUp} className="auth-btn-secondary">
+          Sign Up
+        </button>
+      </div>
+    </div>
+  </div>
+)
+
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import './Listings.css'
 
 export default function Listings({supabase, session}) {
   const [listings, setListings] = useState([])
@@ -43,33 +44,46 @@ export default function Listings({supabase, session}) {
     console.log('Application saved!')
   }
 }
-
   return (
-    <div>
-      <h1>Internship Listings</h1>
+  <div className="listings-container">
+    <h1 className="page-title">Internship Listings</h1>
+    <p className="listings-subtitle">Browse {listings.length} active internship opportunities</p>
+
+    <div className="listings-grid">
       {currentListings.map((listing, index) => (
-        <div key={index}>
-          <p>{listing.company_name}</p>
-          <p>{listing.title}</p>
-        <p>{listing.location}</p>
-          <button onClick={() => handleApply(listing)}>Apply</button>
+        <div key={index} className="listing-card">
+          <div className="listing-info">
+            <h3 className="listing-company">{listing.company_name}</h3>
+            <p className="listing-role">{listing.title}</p>
+            <p className="listing-location">📍 {listing.locations}</p>
+          </div>
+          <button 
+            onClick={() => handleApply(listing)}
+            className="apply-btn"
+          >
+            Apply
+          </button>
         </div>
       ))}
-      <div>
-        <button 
-            onClick={() => setCurrentPage(p => p - 1)}
-            disabled={currentPage === 1}
-        >
-            Previous
-        </button>
-        <p>Page {currentPage}</p>
-        <button 
-            onClick={() => setCurrentPage(p => p + 1)}
-            disabled={currentPage * listingsPerPage >= listings.length}
-        >
-            Next
-        </button>
-        </div>
     </div>
-  )
+
+    <div className="pagination">
+      <button
+        onClick={() => setCurrentPage(p => p - 1)}
+        disabled={currentPage === 1}
+        className="pagination-btn"
+      >
+        Previous
+      </button>
+      <p className="page-indicator">Page {currentPage}</p>
+      <button
+        onClick={() => setCurrentPage(p => p + 1)}
+        disabled={currentPage * listingsPerPage >= listings.length}
+        className="pagination-btn"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+)
 }
