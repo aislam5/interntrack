@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react'
 import './Listings.css'
 
 export default function Listings({supabase, session}) {
+  const [searchTerm, setSearchTerm] = useState('')
   const [listings, setListings] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const listingsPerPage = 20
   const startIndex = (currentPage - 1) * listingsPerPage
-  const currentListings = listings.slice(startIndex, startIndex + listingsPerPage)
-
+  const filteredListings = listings.filter(listing => 
+    listing.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    listing.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    listing.locations.join(' ').toLowerCase().includes(searchTerm.toLowerCase())
+  )
+  const currentListings = filteredListings.slice(startIndex, startIndex + listingsPerPage)
   useEffect(() => {
     async function fetchListings() {
       const response = await fetch('https://raw.githubusercontent.com/SimplifyJobs/Summer2026-Internships/dev/.github/scripts/listings.json')
@@ -46,8 +51,16 @@ export default function Listings({supabase, session}) {
 }
   return (
   <div className="listings-container">
+    <input
+      value={searchTerm}
+      onChange={(e) => {
+        setSearchTerm(e.target.value)
+        setCurrentPage(1) // Reset to first page on new search
+      }}
+      placeholder='Search by company, role or location...'
+    />
     <h1 className="page-title">Internship Listings</h1>
-    <p className="listings-subtitle">Browse {listings.length} active internship opportunities</p>
+    <p className="listings-subtitle">Browse {filteredListings.length} active internship opportunities</p>
 
     <div className="listings-grid">
       {currentListings.map((listing, index) => (
@@ -78,7 +91,7 @@ export default function Listings({supabase, session}) {
       <p className="page-indicator">Page {currentPage}</p>
       <button
         onClick={() => setCurrentPage(p => p + 1)}
-        disabled={currentPage * listingsPerPage >= listings.length}
+        disabled={currentPage * listingsPerPage >= filteredListings.length}
         className="pagination-btn"
       >
         Next
