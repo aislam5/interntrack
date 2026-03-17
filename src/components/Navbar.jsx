@@ -8,6 +8,7 @@ export default function Navbar({ handleLogout }) {
       <div>
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/applications">Applications</Link>
+        <Link to="/listings">Listings</Link>
         <button onClick={handleLogout}>Log Out</button>
       </div>
     </nav>

@@ -69,6 +69,7 @@
 .status-interview { color: #f59e0b; border-color: #f59e0b; }
 .status-offer { color: #10b981; border-color: #10b981; }
 .status-rejected { color: #ef4444; border-color: #ef4444; }
+.status-in-progress { color: #3b82f6; border-color: #3b82f6; }
 
 .delete-btn {
   background-color: #ef444420;

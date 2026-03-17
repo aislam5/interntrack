@@ -5,6 +5,7 @@ import Applications from './pages/Applications'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Navbar from './components/Navbar'
+import Listings from './pages/Listings'
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
             path="/applications"
             element={<Applications supabase={supabase} session={session} applications={applications} fetchApplications={fetchApplications} />}
           />
+          <Route path="/listings" element={<Listings supabase={supabase} session={session} />} />
           <Route path="/" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>

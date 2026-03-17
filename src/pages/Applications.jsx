@@ -78,8 +78,9 @@ return (
             <select
               value={application.status}
               onChange={(e) => handleStatusChange(application.id, e.target.value)}
-              className={`status-select status-${application.status.toLowerCase()}`}
+              className={`status-select status-${application.status.toLowerCase().replace(' ', '-')}`}
             >
+              <option value="In Progress">In Progress</option>
               <option value="Applied">Applied</option>
               <option value="Interview">Interview</option>
               <option value="Offer">Offer</option>
@@ -121,6 +122,7 @@ return (
           placeholder="Application link"
         />
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option value="In Progress">In Progress</option>
           <option value="Applied">Applied</option>
           <option value="Interview">Interview</option>
           <option value="Offer">Offer</option>

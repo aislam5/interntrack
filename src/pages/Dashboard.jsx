@@ -1,11 +1,14 @@
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Tooltip, Cell, Legend, ResponsiveContainer } from 'recharts'
 import './Dashboard.css'
 export default function Dashboard({ applications }) {
+  if (!applications) return <div>Loading...</div>
   const total = applications.length
   const interviews = applications.filter(a => a.status === 'Interview').length
   const offers = applications.filter(a => a.status === 'Offer').length
   const rejected = applications.filter(a => a.status === 'Rejected').length
+  const inProgress = applications.filter(a => a.status === 'In Progress').length
   const chartData = [
+    { name: 'In Progress', value: inProgress, color: '#8b5cf6' },
   { name: 'Applied', value: applications.filter(a => a.status === 'Applied').length, color: '#6366f1' },
   { name: 'Interview', value: interviews, color: '#f59e0b' },
   { name: 'Offer', value: offers, color: '#10b981' },
